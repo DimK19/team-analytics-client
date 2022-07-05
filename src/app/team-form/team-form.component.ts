@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 interface TestObject {
     name: string,
@@ -14,10 +15,10 @@ interface TestObject {
 })
 export class TeamFormComponent implements OnInit {
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder, private router: Router) { }
 
     checkoutForm = this.formBuilder.group({
-        team: ''
+        team: ['']
     });
 
     ngOnInit(): void {
@@ -25,9 +26,11 @@ export class TeamFormComponent implements OnInit {
 
     onSubmit(): void {
         // Process checkout data here
+        //e.preventDefault();
         console.warn('Your order has been submitted', this.checkoutForm.value.team);
-        console.log(this.parseInput(this.checkoutForm.value.team));
+        this.parseInput(this.checkoutForm.value.team);
         this.checkoutForm.reset();
+        this.router.navigate(['/result'])
     }
 
     parseInput(team: string): void { // TODO IMPORTANT define return type as interface
@@ -41,8 +44,10 @@ export class TeamFormComponent implements OnInit {
         var lines: string[] = team.split(/[\r\n]+/g);
         // not good, does not work for mons without item
         var names: string[] = lines.filter(x => x.includes("@"));
+        console.log(names);
 
         var evs: string[] = lines.filter(x => x.includes("EVs"));
+        console.log(evs);
 
         /*
         var evs = lines.map(x => {
@@ -52,6 +57,7 @@ export class TeamFormComponent implements OnInit {
         */
 
         var natures: string[] = lines.filter(x => x.includes("Nature"));
+        console.log(natures);
         // split and parse
         // create object
         //return lines;
