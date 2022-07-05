@@ -1,0 +1,100 @@
+:host {
+    --bg-bug: olive;
+    --bg-dark: darkslategray;
+    --bg-dragon: midnightblue;
+    --bg-electric: gold;
+    --bg-fairy: plum;
+    --bg-fighting: maroon;
+    --bg-fire: firebrick;
+    --bg-flying: deepskyblue;
+    --bg-ghost: darkorchid;
+    --bg-grass: darkgreen;
+    --bg-ground: sandybrown;
+    --bg-ice: paleturquoise;
+    --bg-normal: lightgray;
+    --bg-poison: rebeccapurple;
+    --bg-psychic: lightpink;
+    --bg-rock: saddlebrown;
+    --bg-steel: lightsteelblue;
+    --bg-water: dodgerblue;
+}
+
+.box-type {
+    color: white;
+    border-radius: 5px;
+    text-transform: uppercase;
+    width: 85px;
+    text-align: center;
+}
+
+.bug {
+    background-color: var(--bg-bug);
+}
+
+.dark {
+    background-color: var(--bg-dark);
+}
+
+.dragon {
+    background-color: var(--bg-dragon);
+}
+
+.electric {
+    background-color: var(--bg-electric);
+}
+
+.fairy {
+    background-color: var(--bg-fairy);
+}
+
+.fighting {
+    background-color: var(--bg-fighting);
+}
+
+.fire {
+    background-color: var(--bg-fire);
+}
+
+.flying {
+    background-color: var(--bg-flying);
+}
+
+.ghost {
+    background-color: var(--bg-ghost);
+}
+
+.grass {
+    background-color: var(--bg-grass);
+}
+
+.ground {
+    background-color: var(--bg-ground);
+}
+
+.ice {
+    background-color: var(--bg-ice);
+}
+
+.normal {
+    background-color: var(--bg-normal);
+}
+
+.poison {
+    background-color: var(--bg-poison);
+}
+
+.psychic {
+    background-color: var(--bg-psychic);
+}
+
+.rock {
+    background-color: var(--bg-rock);
+}
+
+.steel {
+    background-color: var(--bg-steel);
+}
+
+.water {
+    background-color: var(--bg-water);
+}

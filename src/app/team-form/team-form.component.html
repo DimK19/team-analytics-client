@@ -1,0 +1,4 @@
+<form [formGroup] = "checkoutForm" (ngSubmit) = "onSubmit()">
+    <textarea name = "team" id = "team" formControlName = "team" rows = "8" cols = "80"></textarea>
+    <button class = "button" type = "submit" routerLink = "/result">Purchase</button>
+</form>
