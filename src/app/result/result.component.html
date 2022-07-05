@@ -1,5 +1,6 @@
 <div>
-    <DiscChartComponent [data] = "evs" [labels] = "['hp', 'atk', 'def', 'spa', 'spd', 'spe']"></DiscChartComponent>
+    <DiscChartComponent [chartID] = "'evChart'" [data] = "evs" [labels] = "['hp', 'atk', 'def', 'spa', 'spd', 'spe']"></DiscChartComponent>
+    <DiscChartComponent [chartID] = "'natChart'" [data] = "natures" [labels] = "['off', 'def', 'spe']"></DiscChartComponent>
     <ul class = "list-group list-group-horizontal">
         <li *ngFor = "let pair of typePairs">
             <MonTypeComponent [typeParam] = "pair[0]"></MonTypeComponent>

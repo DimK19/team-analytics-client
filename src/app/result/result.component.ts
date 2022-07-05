@@ -18,6 +18,8 @@ export class ResultComponent implements OnInit {
         0.24803149606299213
     ].map(x => Math.round(x * 10000) / 100);
 
+    public natures = [4, 1, 2];
+
     public typePairs = [
         [
             "bug",

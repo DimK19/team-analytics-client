@@ -10,12 +10,17 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 export class DiscChartComponent implements OnInit {
 
     @Input()
+    chartID: string = "";
+
+    @Input()
     data: number[] = [];
 
     @Input()
     labels: string[] = [];
 
     constructor() { }
+
+    public publicChartID: string = "";
 
     statColors = [
         'rgb(154, 168, 213)',
@@ -25,6 +30,12 @@ export class DiscChartComponent implements OnInit {
         'rgb(144, 195, 31)',
         'rgb(0, 176, 236)'
     ];
+
+    natureColors = [
+        'rgb(0, 0, 80)',
+        'rgb(80, 0, 0)',
+        'rgb(127, 127, 127)'
+    ];
     // 144 195 31 zinc
     // 0 176 236 carbos
     // 81 181 80 iron
@@ -33,6 +44,12 @@ export class DiscChartComponent implements OnInit {
     // 236 163 75 protein
 
     ngOnInit(): void {
+        this.publicChartID = this.chartID;
+
+    }
+
+    // I remembered hooks from react!! https://angular.io/guide/lifecycle-hooks
+    ngAfterViewInit(): void {
         // chartjs is weird
         // https://www.chartjs.org/docs/3.3.1/getting-started/integration.html
         // https://www.chartjs.org/docs/latest/charts/doughnut.html#pie
@@ -42,7 +59,7 @@ export class DiscChartComponent implements OnInit {
         Chart.register(...registerables); // for legend, idk why
         // console.log(this.labels.map(text => { return {text}; }));
 
-        const myChart = new Chart("resultChart", {
+        const myChart = new Chart(this.chartID, {
             type: 'pie',
             data: {
                 labels: this.labels,
@@ -50,7 +67,7 @@ export class DiscChartComponent implements OnInit {
                     {
                         label: 'Results',
                         data: this.data,
-                        backgroundColor: this.statColors,
+                        backgroundColor: this.data.length == 6 ? this.statColors : this.natureColors,
                         hoverOffset: 4
                     }
                 ]
