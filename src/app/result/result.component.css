@@ -1,0 +1,23 @@
+.ul-type {
+    list-style-type: none;
+    overflow: auto;
+    max-height: 400px;
+    margin: auto;
+    width: 70%;
+    display: inline-block;
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    margin: auto 30px;
+    justify-content: center;
+}
+
+.wrapper-type {
+    margin-bottom: 8px;
+}
+
+.wrapper-chart {
+    justify-content: center;
+}

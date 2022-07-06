@@ -1,0 +1,19 @@
+textarea {
+    display: block;
+    clear: both;
+    margin-bottom: 5px;
+    resize: none;
+}
+
+.button-submit {
+    background-color: lightgray;
+    border-radius: 5px;
+    font-size: 18px;
+    border: 1px solid black;
+    padding: 10px 20px;
+}
+
+.button-submit:hover {
+    background-color: rgb(170, 170, 170);
+    cursor: pointer;
+}

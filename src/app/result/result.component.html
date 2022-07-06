@@ -1,10 +1,29 @@
 <div>
-    <DiscChartComponent [chartID] = "'evChart'" [data] = "evs" [labels] = "['hp', 'atk', 'def', 'spa', 'spd', 'spe']"></DiscChartComponent>
-    <DiscChartComponent [chartID] = "'natChart'" [data] = "natures" [labels] = "['off', 'def', 'spe']"></DiscChartComponent>
-    <ul class = "list-group list-group-horizontal">
-        <li *ngFor = "let pair of typePairs">
-            <MonTypeComponent [typeParam] = "pair[0]"></MonTypeComponent>
-            <MonTypeComponent [typeParam] = "pair[1]"></MonTypeComponent>
-        </li>
-    </ul>
+    <h2>Analysis</h2>
+    <div class = "wrapper">
+        <div>
+            <h3 style = "text-align: center;">Unresisted Type Pairs</h3>
+            <ul class = "ul-type list-group list-group-horizontal">
+                <li *ngFor = "let pair of unresistedPairs">
+                    <div class = "wrapper wrapper-type">
+                        <MonTypeComponent [typeParam] = "pair[0]"></MonTypeComponent>
+                        <MonTypeComponent [typeParam] = "pair[1]"></MonTypeComponent>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3 style = "text-align: center;">Weak Type Pairs</h3>
+            <ul class = "ul-type list-group list-group-horizontal">
+                <li *ngFor = "let pair of weakPairs">
+                    <div class = "wrapper wrapper-type">
+                        <MonTypeComponent [typeParam] = "pair[0]"></MonTypeComponent>
+                        <MonTypeComponent [typeParam] = "pair[1]"></MonTypeComponent>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <DiscChartComponent [title] = "'EV Allocation'" [chartID] = "'evChart'" [data] = "evs" [labels] = "evLabels"></DiscChartComponent>
+        <DiscChartComponent [title] = "'Natures'" [chartID] = "'natChart'" [data] = "natures" [labels] = "natureLabels"></DiscChartComponent>
+    </div>
 </div>
