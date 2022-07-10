@@ -7,6 +7,7 @@ import { DiscChartComponent } from './disc-chart/disc-chart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MonTypeComponent } from './mon-type/mon-type.component';
 import { ResultComponent } from './result/result.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ResultComponent } from './result/result.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule

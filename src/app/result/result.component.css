@@ -21,3 +21,30 @@
 .wrapper-chart {
     justify-content: center;
 }
+
+.wrapper-table {
+    margin-top: 55px;
+}
+
+td {
+    border: 3px solid white;
+    text-align: center;
+    width: 100px;
+}
+
+/* first seven columns are header and 6 mons, next three different color for total results */
+tr td:nth-of-type(n + 7) {
+    background-color: rgb(240, 240, 240);
+    width: 40px;
+}
+
+.th-mon {
+    font-size: 80%;
+}
+
+.box-speed {
+    border: 5px solid white;
+    border-radius: 10px;
+    height: 20%;
+    margin: auto;
+}

@@ -23,7 +23,161 @@
                 </li>
             </ul>
         </div>
-        <DiscChartComponent [title] = "'EV Allocation'" [chartID] = "'evChart'" [data] = "evs" [labels] = "evLabels"></DiscChartComponent>
+        <DiscChartComponent [title] = "'EV Allocation %'" [chartID] = "'evChart'" [data] = "evs" [labels] = "evLabels"></DiscChartComponent>
         <DiscChartComponent [title] = "'Natures'" [chartID] = "'natChart'" [data] = "natures" [labels] = "natureLabels"></DiscChartComponent>
+    </div>
+    <div class = "wrapper wrapper-table">
+        <table>
+            <tbody>
+                <tr>
+                    <th></th>
+                    <th class = "th-mon" rowspan = "2" *ngFor = "let i of interactions">{{i.name}}</th>
+                    <th class = "th-mon" colspan = "3"><u>TOTAL</u></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th class = "th-mon">WEAK</th>
+                    <th class = "th-mon">RESIST</th>
+                    <th class = "th-mon">IMMUNE</th>
+                </tr>
+                <!-- I tried doing this in a more clever way, interfaces enums types etc, -->
+                <!-- but typescript simply would not cooperate, giving me a stupid -->
+                <!-- error message about type of index incompatible with object -->
+                <!-- No index signature with a parameter of type 'string' was found on type -->
+                <!-- Total bs, I understand what it means but could not solve it, wasted two hours -->
+                <!-- Thus I will do the stupid hardcoding below, I suppose -->
+                <!-- some of it would have been needed anyway -->
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'bug'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['bug']}}</td>
+                    <td>{{totalInteractions['bug']['weak']}}</td>
+                    <td>{{totalInteractions['bug']['resist']}}</td>
+                    <td>{{totalInteractions['bug']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'dark'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['dark']}}</td>
+                    <td>{{totalInteractions['dark']['weak']}}</td>
+                    <td>{{totalInteractions['dark']['resist']}}</td>
+                    <td>{{totalInteractions['dark']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'dragon'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['dragon']}}</td>
+                    <td>{{totalInteractions['dragon']['weak']}}</td>
+                    <td>{{totalInteractions['dragon']['resist']}}</td>
+                    <td>{{totalInteractions['dragon']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'electric'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['electric']}}</td>
+                    <td>{{totalInteractions['electric']['weak']}}</td>
+                    <td>{{totalInteractions['electric']['resist']}}</td>
+                    <td>{{totalInteractions['electric']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'fairy'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['fairy']}}</td>
+                    <td>{{totalInteractions['fairy']['weak']}}</td>
+                    <td>{{totalInteractions['fairy']['resist']}}</td>
+                    <td>{{totalInteractions['fairy']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'fighting'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['fighting']}}</td>
+                    <td>{{totalInteractions['fighting']['weak']}}</td>
+                    <td>{{totalInteractions['fighting']['resist']}}</td>
+                    <td>{{totalInteractions['fighting']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'fire'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['fire']}}</td>
+                    <td>{{totalInteractions['fire']['weak']}}</td>
+                    <td>{{totalInteractions['fire']['resist']}}</td>
+                    <td>{{totalInteractions['fire']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'flying'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['flying']}}</td>
+                    <td>{{totalInteractions['flying']['weak']}}</td>
+                    <td>{{totalInteractions['flying']['resist']}}</td>
+                    <td>{{totalInteractions['flying']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'ghost'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['ghost']}}</td>
+                    <td>{{totalInteractions['ghost']['weak']}}</td>
+                    <td>{{totalInteractions['ghost']['resist']}}</td>
+                    <td>{{totalInteractions['ghost']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'grass'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['grass']}}</td>
+                    <td>{{totalInteractions['grass']['weak']}}</td>
+                    <td>{{totalInteractions['grass']['resist']}}</td>
+                    <td>{{totalInteractions['grass']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'ground'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['ground']}}</td>
+                    <td>{{totalInteractions['ground']['weak']}}</td>
+                    <td>{{totalInteractions['ground']['resist']}}</td>
+                    <td>{{totalInteractions['ground']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'ice'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['ice']}}</td>
+                    <td>{{totalInteractions['ice']['weak']}}</td>
+                    <td>{{totalInteractions['ice']['resist']}}</td>
+                    <td>{{totalInteractions['ice']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'normal'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['normal']}}</td>
+                    <td>{{totalInteractions['normal']['weak']}}</td>
+                    <td>{{totalInteractions['normal']['resist']}}</td>
+                    <td>{{totalInteractions['normal']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'poison'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['poison']}}</td>
+                    <td>{{totalInteractions['poison']['weak']}}</td>
+                    <td>{{totalInteractions['poison']['resist']}}</td>
+                    <td>{{totalInteractions['poison']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'psychic'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['psychic']}}</td>
+                    <td>{{totalInteractions['psychic']['weak']}}</td>
+                    <td>{{totalInteractions['psychic']['resist']}}</td>
+                    <td>{{totalInteractions['psychic']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'rock'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['rock']}}</td>
+                    <td>{{totalInteractions['rock']['weak']}}</td>
+                    <td>{{totalInteractions['rock']['resist']}}</td>
+                    <td>{{totalInteractions['rock']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'steel'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['steel']}}</td>
+                    <td>{{totalInteractions['steel']['weak']}}</td>
+                    <td>{{totalInteractions['steel']['resist']}}</td>
+                    <td>{{totalInteractions['steel']['immune']}}</td>
+                </tr>
+                <tr>
+                    <th><MonTypeComponent [typeParam] = "'water'"></MonTypeComponent></th>
+                    <td *ngFor = "let i of interactions">{{i.interactions['water']}}</td>
+                    <td>{{totalInteractions['water']['weak']}}</td>
+                    <td>{{totalInteractions['water']['resist']}}</td>
+                    <td>{{totalInteractions['water']['immune']}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class = "box-speed">
+            <p>Highest speed: {{hs}}</p>
+            <p>Lowest speed: {{ls}}</p>
+        </div>
     </div>
 </div>

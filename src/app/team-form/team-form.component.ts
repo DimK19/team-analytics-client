@@ -1,11 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
-interface TestObject {
+export interface MonObj {
+    mon: {
+        name: string,
+        types: string[],
+        speed: number
+    }
+}
+
+export interface NatObj {
+    offensive: number,
+    defensive: number,
+    speed: number
+}
+
+export interface EvObj {
+    hp: number,
+    atk: number,
+    def: number,
+    spa: number,
+    spd: number,
+    spe: number
+}
+
+export interface Types {
+    bug: number,
+    dark: number,
+    dragon: number,
+    electric: number,
+    fairy: number,
+    fighting: number,
+    fire: number,
+    flying: number,
+    ghost: number,
+    grass: number,
+    ground: number,
+    ice: number,
+    normal: number,
+    poison: number,
+    psychic: number,
+    rock: number,
+    steel: number,
+    water: number
+}
+
+export interface Interaction {
     name: string,
-    nature: string,
-    evs: Object
+    interactions: Types
+}
+
+export interface Response {
+    mons: MonObj[],
+    nature: NatObj,
+    evs: EvObj,
+    unresisted_pairs: string[][],
+    weak_pairs: string[][],
+    individual_interations: Interaction[]
 }
 
 @Component({
@@ -15,7 +68,7 @@ interface TestObject {
 })
 export class TeamFormComponent implements OnInit {
 
-    constructor(private formBuilder: FormBuilder, private router: Router) { }
+    constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) { }
 
     checkoutForm = this.formBuilder.group({
         team: ['']
@@ -25,12 +78,15 @@ export class TeamFormComponent implements OnInit {
     }
 
     onSubmit(): void {
-        // Process checkout data here
         //e.preventDefault();
-        console.warn('Your order has been submitted', this.checkoutForm.value.team);
         console.log(this.parseInput(this.checkoutForm.value.team));
-        this.checkoutForm.reset();
-        this.router.navigate(['/result'])
+        // this.checkoutForm.reset();
+        this.http.post<Response>('http://localhost:3000/team', this.parseInput(this.checkoutForm.value.team))
+        //this.http.post<any>('http://localhost:3000/team', req)
+            .subscribe( response => {
+                console.log(response);
+                this.router.navigate(['/result'], {state: response});
+            });
     }
 
     parseInput(team: string): Object { // TODO IMPORTANT define return type as interface
@@ -52,22 +108,19 @@ export class TeamFormComponent implements OnInit {
 
         var natures: string[] = lines.filter(x => x.includes("Nature"))
                                      .map(x => x.split(' ')[0]);
-        // split and parse
-        // create object
-        //return lines;
 
         let members: Object[] = [];
 
         for(let i = 0; i < 6; ++i) {
             members.push({
-                "name": names[i],
-                "ivs": [],
-                "evs": evs[i],
-                "nature": natures[i]
+                'name': names[i],
+                'ivs': [],
+                'evs': evs[i],
+                'nature': natures[i]
             });
         }
 
-        return {"members": members};
+        return {'members': members};
     }
 
     convertEVArray(arr: string[]): Object[] {
@@ -76,9 +129,9 @@ export class TeamFormComponent implements OnInit {
             let ev = {}
             let v: number = Number(i.trim().split(' ')[0]);
             let s: string = i.trim().split(' ')[1];
-            ev = Object.assign({"stat" : s}, ev);
-            ev = Object.assign({"value" : v}, ev);
-            res.push({"ev" : ev});
+            ev = Object.assign({'stat' : s}, ev);
+            ev = Object.assign({'value' : v}, ev);
+            res.push({'ev' : ev});
         }
 
         return res;

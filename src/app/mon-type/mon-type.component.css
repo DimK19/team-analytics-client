@@ -23,6 +23,7 @@
     color: white;
     border-radius: 5px;
     text-transform: uppercase;
+    font-weight: bold;
     width: 85px;
     text-align: center;
 }

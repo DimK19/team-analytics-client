@@ -15,7 +15,7 @@ export class MonTypeComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
-        this.typeName = this.typeParam;
+        this.typeName = this.typeParam.toLowerCase();
     }
 
 }
