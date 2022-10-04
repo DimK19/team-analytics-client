@@ -98,13 +98,30 @@ export class TeamFormComponent implements OnInit {
 
         // separate string by line
         var lines: string[] = team.split(/[\r\n]+/g);
-        // not good, does not work for mons without item
-        var names: string[] = lines.filter(x => x.includes('@'))
+        // each block corresponding to a mon consists of (at most, because the format is badly designed) ten lines:
+        // name, ability, level, evs, nature, ivs, and four moves that start with '- '
+        var names: string[] = lines.filter(x => !x.includes('EVs') && !x.includes('IVs') && !x.includes('Ability') && !x.includes('Nature') && !x.includes('Level') && !x.includes('- '))
                                    .map(x => x.split('@')[0].trim());
 
         var evs: Object[] = lines.filter(x => x.includes('EVs'))
                                  .map(x => x.replace(/EVs: /g, '').split('/'))
-                                 .map(x => this.convertEVArray(x));
+                                 .map(x => this.convertStatArray(x));
+
+        // all this hack-y inefficiency because not every mon-block is guaranteed
+        // to include iv field and thus I resort to using a guaranteed field as anchor
+        var ivs_aux: string[][] = [];
+        var flag: boolean = true; // 1 iv, 0 nature
+        for(let i of lines) {
+            if(i.includes('IVs')) {
+                ivs_aux.push(i.replace(/IVs: /g, '').split('/'));
+                flag = true;
+            }
+            else if(i.includes('Nature')) {
+                if(!flag) ivs_aux.push([]);
+                flag = false;
+            }
+        }
+        var ivs: Object[] = ivs_aux.map(x => this.convertStatArray(x, 'iv'));
 
         var natures: string[] = lines.filter(x => x.includes("Nature"))
                                      .map(x => x.split(' ')[0]);
@@ -114,7 +131,7 @@ export class TeamFormComponent implements OnInit {
         for(let i = 0; i < 6; ++i) {
             members.push({
                 'name': names[i],
-                'ivs': [],
+                'ivs': ivs[i],
                 'evs': evs[i],
                 'nature': natures[i]
             });
@@ -123,7 +140,7 @@ export class TeamFormComponent implements OnInit {
         return {'members': members};
     }
 
-    convertEVArray(arr: string[]): Object[] {
+    convertStatArray(arr: string[], type: string = 'ev'): Object[] {
         let res: Object[] = [];
         for(const i of arr) {
             let ev = {}
@@ -131,7 +148,7 @@ export class TeamFormComponent implements OnInit {
             let s: string = i.trim().split(' ')[1];
             ev = Object.assign({'stat' : s}, ev);
             ev = Object.assign({'value' : v}, ev);
-            res.push({'ev' : ev});
+            res.push({[type] : ev});
         }
 
         return res;
