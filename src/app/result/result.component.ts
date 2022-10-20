@@ -15,8 +15,8 @@ export class ResultComponent implements OnInit {
     // certainty that it never will be. Both are used to temporarily avoid
     // errors "Object is possibly null" or "undefined"
     private state = this.router.getCurrentNavigation()?.extras!.state!;
-    public hs: any = this.state['highest_speed'];
-    public ls: any = this.state['lowest_speed'];
+    public hs: number = this.state['highest_speed'];
+    public ls: number = this.state['lowest_speed'];
 
     public evLabels = ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe'];
     public natureLabels = ['Offensive', 'Defensive', 'Speed'];

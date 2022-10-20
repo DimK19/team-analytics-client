@@ -54,11 +54,13 @@ export interface Interaction {
 
 export interface Response {
     mons: MonObj[],
-    nature: NatObj,
+    natures: NatObj,
     evs: EvObj,
     unresisted_pairs: string[][],
     weak_pairs: string[][],
-    individual_interations: Interaction[]
+    highest_speed: number,
+    lowest_speed: number,
+    individual_interactions: Interaction[]
 }
 
 @Component({
@@ -98,10 +100,10 @@ export class TeamFormComponent implements OnInit {
 
         // separate string by line
         var lines: string[] = team.split(/[\r\n]+/g);
-        // each block corresponding to a mon consists of (at most, because the format is badly designed) ten lines:
-        // name, ability, level, evs, nature, ivs, and four moves that start with '- '
-        var names: string[] = lines.filter(x => !x.includes('EVs') && !x.includes('IVs') && !x.includes('Ability') && !x.includes('Nature') && !x.includes('Level') && !x.includes('- '))
-                                   .map(x => x.split('@')[0].trim());
+       // each block corresponding to a mon consists of (at most, because the format is badly designed) eleven lines:
+       // name, ability, level, evs, nature, ivs, shiny, and four moves that start with '- '
+       var names: string[] = lines.filter(x => !x.includes('EVs') && !x.includes('IVs') && !x.includes('Ability') && !x.includes('Nature') && !x.includes('Level') && !x.includes('Shiny') && !x.includes('- '))
+                                  .map(x => x.split('@')[0].trim());
 
         var evs: Object[] = lines.filter(x => x.includes('EVs'))
                                  .map(x => x.replace(/EVs: /g, '').split('/'))
