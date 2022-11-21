@@ -83,7 +83,7 @@ export class TeamFormComponent implements OnInit {
         //e.preventDefault();
         console.log(this.parseInput(this.checkoutForm.value.team));
         // this.checkoutForm.reset();
-        this.http.post<Response>('http://localhost:3000/team', this.parseInput(this.checkoutForm.value.team))
+        this.http.post<Response>('https://pk-team-analytics-server.herokuapp.com/team', this.parseInput(this.checkoutForm.value.team))
         //this.http.post<any>('http://localhost:3000/team', req)
             .subscribe( response => {
                 console.log(response);
