@@ -1,27 +1,35 @@
-# TeamAnalyticsClient
+# Team Analytics Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
+Frontend of a web application that analyses a Pokemon team. The user pastes a team, the client sends it to the server, and the analysis is displayed.
 
-## Development server
+Server: https://github.com/DimK19/team-analytics-server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![Team Analytics screenshot](docs/screenshot.png)
 
-## Code scaffolding
+## What it does
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Takes a team of six Pokemon pasted in Pokemon Showdown export format.
+- Parses the text into JSON (names, natures, EVs, IVs) and sends it to the server.
+- Displays the result:
+  - Unresisted and weak type pairs.
+  - Pie charts of the team’s EV allocation and nature split.
+  - A table of each member’s damage multiplier against every type, with weak, resist and immune totals.
 
-## Build
+## Technologies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular 13 (TypeScript)
+- Chart.js
+- Express, to serve the built app on Heroku
 
-## Running unit tests
+## Running
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+npm install
+npx ng serve
+```
 
-## Running end-to-end tests
+The app is served at `http://localhost:4200`.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The server URL is hard-coded in `src/app/team-form/team-form.component.ts`. To use a local server, change it to `http://localhost:3000/team`.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Production: `npm run build`, then `npm start` serves `dist/team-analytics-client` with Express.
